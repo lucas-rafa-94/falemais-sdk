@@ -124,7 +124,7 @@ const callback = () => {
             called: state.phoneNumber
           }
           $.ajax({
-            url: "https://170.254.79.160:8081/fale-mais/v1/calls/?hubId=" + hubId,
+            url: "https://170.254.79.160:8081/fale-mais/v1/calls/?hubId=7360356",
             type: "post",
             data: JSON.stringify(call),
             headers: {
@@ -132,29 +132,46 @@ const callback = () => {
             },
             success: function(data) {
               callId = data.callId;
-              console.log("Ligacao feita com sucesso: " + callId);
-              var statusCall = "";
-              while (statusCall !== "finished") {
-                Thread.sleep(5000);
-                console.log("status call: " + statusCall);
-                $.ajax({
-                  url: "https://170.254.79.160:8081/fale-mais/v1/calls?callId=" + data.callId + "&hubId=" + hubId,
-                  type: "get",
-                  headers: {
-                    "Content-Type": "application/json"
-                  },
-                  success: function(dataStatus) {
-                    console.log(dataStatus);
-                    statusCall = dataStatus.state;
-                  },
-                  error: function(errorDataStatus) {
-                    cti.callEnded();
-                    console.log(errorDataStatus);
-                    alert("Erro no processo");
-                  }
-                });
-              }
-              cti.callEnded();
+              // console.log(validacaoChamada(callId));
+              validacaoChamada(callId);
+              function validacaoChamada(callId) {
+                    $.ajax({
+                      url: "https://170.254.79.160:8081/fale-mais/v1/calls?callId=" + callId + "&hubId=" + hubId,
+                      type: "get",
+                      data: "",
+                      headers: {
+                        "Content-Type": "application/json"
+                      },
+                      success: function(dataStatus) {
+                        console.log(dataStatus);
+                        if(dataStatus.state === "finished" || dataStatus.state === "failed"){
+                          $.ajax({
+                            url: "https://170.254.79.160:8081/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId + "&hubId=" + hubId + "&end=1",
+                            type: "post",
+                            data: "",
+                            headers: {
+                              "Content-Type": "application/json"
+                            },
+                            success: function(dataEndCall) {
+                              console.log(dataEndCall);
+                            },
+                            error: function(error) {
+                              result = error;
+                              console.log(error);
+                              alert("Erro no processo");
+                            }
+                          });
+                          cti.callEnded();
+                        }else{
+                            setTimeout(validacaoChamada(callId), 100000);
+                        }
+                      },
+                      error: function(errorDataStatus) {
+                        console.log(errorDataStatus);
+                        alert("Erro no processo");
+                      }
+                    });
+                }
             },
             error: function(error) {
               console.log(error);
@@ -166,13 +183,13 @@ const callback = () => {
       case "call answered":
         cti.callAnswered();
         break;
-      case "fim chamada":
+      case "FINALIZAR CHAMADA":
         var endCall = {
           callId: callId,
           called: state.phoneNumber
         }
         $.ajax({
-          url: "https://170.254.79.160:8081/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId + "&hubId=" + hubId,
+          url: "https://170.254.79.160:8081/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId + "&hubId=" + hubId + "&end=0",
           type: "post",
           data: "",
           headers: {
@@ -214,51 +231,6 @@ const callback = () => {
   });
 };
 
-
-function finalizacaoChamada(callId, phoneNumber) {
-  var endCall = {
-    callId: callId,
-    called: phoneNumber
-  }
-  $.ajax({
-    url: "https://hubspotapi.herokuapp.com/v1/calls/endcall",
-    type: "post",
-    data: JSON.stringify(endCall),
-    headers: {
-      "Content-Type": "application/json"
-    },
-    success: function(data) {
-      console.log(data);
-      result = data.state;
-    },
-    error: function(error) {
-      result = error;
-      console.log(error);
-      alert("Erro no processo");
-    }
-  });
-}
-
-function validacaoChamada(data) {
-  var result = "";
-  $.ajax({
-    url: "https://hubspotapi.herokuapp.com/v1/calls?callId=" + data.callId,
-    type: "get",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    success: function(data) {
-      console.log(data);
-      result = data.state;
-    },
-    error: function(error) {
-      result = error;
-      console.log(error);
-      alert("Erro no processo");
-    }
-  });
-  return result;
-}
 
 if (
   document.readyState === "interactive" ||
