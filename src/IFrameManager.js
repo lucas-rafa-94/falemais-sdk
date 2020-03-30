@@ -80,7 +80,7 @@ class IFrameManager {
     console.log("url");
     console.log(url);
     var res = url.split("contacts/");
-    if(url.includes("localhost") === false){
+    if(url.includes("170.254.79.160") === false){
       localStorage.setItem(
         "contact",
         res[1]
