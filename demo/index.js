@@ -144,7 +144,7 @@ const callback = () => {
                       },
                       success: function(dataStatus) {
                         console.log(dataStatus);
-                        if(dataStatus.state === "finished" || dataStatus.state === "failed"){
+                        if(dataStatus.state === "finished" || dataStatus.state === "failed" || dataStatus.state === "string"){
                           $.ajax({
                             url: "https://170.254.79.160:8081/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId + "&hubId=" + hubId + "&end=1",
                             type: "post",
