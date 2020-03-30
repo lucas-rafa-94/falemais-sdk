@@ -136,6 +136,7 @@ const callback = () => {
               var statusCall = "";
               while (statusCall !== "finished") {
                 Thread.sleep(3000);
+                console.log("status call: " + statusCall);
                 $.ajax({
                   url: "https://170.254.79.160:8081/fale-mais/v1/calls?callId=" + data.callId + "&hubId=" + hubId,
                   type: "get",
