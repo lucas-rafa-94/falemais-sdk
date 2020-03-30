@@ -13,6 +13,6 @@ module.exports = {
     contentBase: "./",
     publicPath: "/bin",
     https: true,
-    port: 9025
+    port: 8082
   }
 };

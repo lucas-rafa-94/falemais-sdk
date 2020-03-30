@@ -6,7 +6,7 @@ RUN npm install
 WORKDIR /app/demo
 RUN npm install
 
-EXPOSE 9025
+EXPOSE 8082
 
 RUN cd /app/demo
 
