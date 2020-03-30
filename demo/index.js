@@ -110,7 +110,7 @@ const callback = () => {
             called: state.phoneNumber
           }
           $.ajax({
-            url: "https://hubspotapi.herokuapp.com/fale-mais/v1/calls/?hubId=" + hubId,
+            url: "https://170.254.79.160:8081/fale-mais/v1/calls/?hubId=" + hubId,
             type: "post",
             data: JSON.stringify(call),
             headers: {
@@ -136,7 +136,7 @@ const callback = () => {
           called: state.phoneNumber
         }
         $.ajax({
-          url: "https://hubspotapi.herokuapp.com/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId +"&hubId=" + hubId,
+          url: "https://170.254.79.160:8081/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId +"&hubId=" + hubId,
           type: "post",
           data: "",
           headers: {
