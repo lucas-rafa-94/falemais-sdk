@@ -10,6 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, "bin")
   },
   devServer: {
+    host: "0.0.0.0",
     contentBase: "./",
     publicPath: "/bin",
     https: true,
