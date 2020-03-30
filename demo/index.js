@@ -135,7 +135,7 @@ const callback = () => {
               console.log("Ligacao feita com sucesso: " + callId);
               var statusCall = "";
               while (statusCall !== "finished") {
-                Thread.sleep(3000);
+                Thread.sleep(5000);
                 console.log("status call: " + statusCall);
                 $.ajax({
                   url: "https://170.254.79.160:8081/fale-mais/v1/calls?callId=" + data.callId + "&hubId=" + hubId,
@@ -143,17 +143,18 @@ const callback = () => {
                   headers: {
                     "Content-Type": "application/json"
                   },
-                  success: function(data) {
-                    console.log(data);
-                    statusCall = data.state;
+                  success: function(dataStatus) {
+                    console.log(dataStatus);
+                    statusCall = dataStatus.state;
                   },
-                  error: function(error) {
-                    result = error;
-                    console.log(error);
+                  error: function(errorDataStatus) {
+                    cti.callEnded();
+                    console.log(errorDataStatus);
                     alert("Erro no processo");
                   }
                 });
               }
+              cti.callEnded();
             },
             error: function(error) {
               console.log(error);
