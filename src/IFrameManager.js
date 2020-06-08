@@ -54,6 +54,7 @@ class IFrameManager {
     // console.log(this.destinationHost);
   }
 
+
   /*
    * Creates a new message id
    */

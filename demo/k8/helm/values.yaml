@@ -1,0 +1,15 @@
+replicaCount: 1
+
+app: qarevbankbackoffice
+namespace: default
+
+image:
+  repository: registry.digitalocean.com/revobank-registry/revobankbackoffice
+  tag: :GIT_COMMIT
+  name: qarevobank-backoffice
+  port: 8080
+
+
+service:
+  name: qarevobank-backoffice-service
+  type: LoadBalancer
