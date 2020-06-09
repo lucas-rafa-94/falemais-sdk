@@ -20,11 +20,7 @@ module.exports = {
     host: "0.0.0.0",
     contentBase: "./",
     publicPath: "/bin",
-    port: 443,
-    https: {
-        key: fs.readFileSync('/etc/letsencrypt/live/hubapi.falemaisvoip.com.br/privkey1.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/hubapi.falemaisvoip.com.br/cert1.pem'),
-        ca: fs.readFileSync('/etc/letsencrypt/live/hubapi.falemaisvoip.com.br/chain1.pem')
-    }
+    port: 8082,
+    https: false,
   }
 };
