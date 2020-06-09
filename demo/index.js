@@ -158,7 +158,7 @@ const callback = () => {
                             error: function(error) {
                               result = error;
                               console.log(error);
-                              alert("Erro no processo");
+                              // alert("Erro no processo");
                             }
                           });
                           cti.callEnded();
@@ -168,14 +168,14 @@ const callback = () => {
                       },
                       error: function(errorDataStatus) {
                         console.log(errorDataStatus);
-                        alert("Erro no processo");
+                        // alert("Erro no processo");
                       }
                     });
                 }
             },
             error: function(error) {
               console.log(error);
-              alert("Erro no processo");
+              // alert("Erro no processo");
             }
           });
         }, 500);
@@ -201,7 +201,7 @@ const callback = () => {
           error: function(error) {
             result = error;
             console.log(error);
-            alert("Erro no processo");
+            // alert("Erro no processo");
           }
         });
         cti.callEnded();
