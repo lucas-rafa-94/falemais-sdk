@@ -7,7 +7,7 @@ module.exports = {
   output: {
     filename: "index_combined.js",
     libraryTarget: "umd",
-    path: path.resolve(__dirname, "bin")
+    path: path.resolve(__dirname, "/")
   },
   devServer: {
     headers: {
