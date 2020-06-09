@@ -81,7 +81,7 @@ class IFrameManager {
     console.log("url");
     console.log(url);
     var res = url.split("contacts/");
-    if(url.includes("170.254.79.160") === false){
+    if(url.includes("hubapi.falemaisvoip.com.br") === false){
       localStorage.setItem(
         "contact",
         res[1]

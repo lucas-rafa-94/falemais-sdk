@@ -124,7 +124,7 @@ const callback = () => {
             called: state.phoneNumber
           }
           $.ajax({
-            url: "https://hubapi.falemaisvoip.com.br:8443/fale-mais/v1/calls/?hubId=7360356",
+            url: "https://hubapi.falemaisvoip.com.br:8443/fale-mais/v1/calls/?hubId=" + hubId,
             type: "post",
             data: JSON.stringify(call),
             headers: {
