@@ -1,9 +1,9 @@
 // import CallingExtensions, { Constants } from "@hubspot/calling-extensions-sdk";
 
-import CallingExtensions from "./src/CallingExtensions";
+import CallingExtensions from "./CallingExtensions";
 import {
   errorType
-} from "./src/Constants";
+} from "./Constants";
 
 
 var engagementIdconst = "";
