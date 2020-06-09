@@ -124,7 +124,7 @@ const callback = () => {
             called: state.phoneNumber
           }
           $.ajax({
-            url: "http://170.254.79.160:8081/fale-mais/v1/calls/?hubId=7360356",
+            url: "https://hubapi.falemaisvoip.com.br:8443/fale-mais/v1/calls/?hubId=7360356",
             type: "post",
             data: JSON.stringify(call),
             headers: {
@@ -136,7 +136,7 @@ const callback = () => {
               validacaoChamada(callId);
               function validacaoChamada(callId) {
                     $.ajax({
-                      url: "http://170.254.79.160:8081/fale-mais/v1/calls?callId=" + callId + "&hubId=" + hubId,
+                      url: "https://hubapi.falemaisvoip.com.br:8443/fale-mais/v1/calls?callId=" + callId + "&hubId=" + hubId,
                       type: "get",
                       data: "",
                       headers: {
@@ -146,7 +146,7 @@ const callback = () => {
                         console.log(dataStatus);
                         if(dataStatus.state === "finished" || dataStatus.state === "failed" || dataStatus.state === "string" || dataStatus === "" || dataStatus == null || dataStatus == undefined){
                           $.ajax({
-                            url: "http://170.254.79.160:8081/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId + "&hubId=" + hubId + "&end=1",
+                            url: "https://hubapi.falemaisvoip.com.br:8443/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId + "&hubId=" + hubId + "&end=1",
                             type: "post",
                             data: "",
                             headers: {
@@ -189,7 +189,7 @@ const callback = () => {
           called: state.phoneNumber
         }
         $.ajax({
-          url: "http://170.254.79.160:8081/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId + "&hubId=" + hubId + "&end=0",
+          url: "https://hubapi.falemaisvoip.com.br:8443/hubspot/v1/api/contact/engagement?callId=" + callId + "&called=" + state.phoneNumber + "&engagementId=" + state.engagementId + "&hubId=" + hubId + "&end=0",
           type: "post",
           data: "",
           headers: {

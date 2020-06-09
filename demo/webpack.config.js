@@ -21,6 +21,6 @@ module.exports = {
     contentBase: "./",
     publicPath: "/",
     port: 8082,
-    https: false,
+    https: false
   }
 };
