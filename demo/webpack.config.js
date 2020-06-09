@@ -19,7 +19,7 @@ module.exports = {
     disableHostCheck: true,
     host: "0.0.0.0",
     contentBase: "./",
-    publicPath: "/bin",
+    publicPath: "/",
     port: 8082,
     https: false,
   }
