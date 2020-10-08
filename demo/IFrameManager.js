@@ -78,22 +78,9 @@ class IFrameManager {
   }
 
   static extractHostFromUrl(url) {
-    console.log("url");
-    console.log(url);
+    
     var res = url.split("contacts/");
-    if(url.includes("hubapi.falemaisvoip.com.br") === false){
-      localStorage.setItem(
-        "contact",
-        res[1]
-      );
-    }
-    if(url.includes("app.hubspot.com") === false){
-      localStorage.setItem(
-        "contact",
-        res[1]
-      );
-    }
-    console.log(res);
+    
     const a = document.createElement("a");
     a.href = url;
     return `${a.protocol}//${a.host}`;
@@ -102,6 +89,7 @@ class IFrameManager {
   static getDestinationHost(iFrameOptions) {
     console.log("iFrameOptions");
     const url = iFrameOptions ? iFrameOptions.src : document.referrer;
+    console.log(url);
     console.log(IFrameManager.extractHostFromUrl(url));
     return IFrameManager.extractHostFromUrl(url);
   }
@@ -237,7 +225,7 @@ class IFrameManager {
         const {
           hostUrl
         } = event.data;
-        console.log("++++ " + event.origin);
+        
         this.destinationHost = hostUrl || this.destinationHost;
         this.sendMessage(message);
         this.onReady();

@@ -27,7 +27,11 @@
   <br>
   <br>
   <br>
-  <input style='margin-left: 126px;  margin-bottom: 20px;' class="btn btn-primary"  type="button" value="INICIAR CHAMADA" />
+  <div class="col-md-4  form-group" data-for="nome">
+    <label style='margin-left: 125px;'id="nomeLabel" for="name-form1-9" class="form-control-label mbr-fonts-style display-7">Informe seu HubId</label>
+    <input style='margin-left: 118px;  width: 150px;' type="text" name="nome" id="nome" data-form-field="nome" required="required" class="form-control display-7" id="name-form1-9">
+</div>
+  <input style='margin-left: 126px;  margin-bottom: 20px;' class="btn btn-primary" id="btnEnviar"  type="button" value="INICIAR CHAMADA" />
 
   <br>
   <!-- <input style='margin-left: 115px;  margin-bottom: 20px;' class="btn btn-danger"  type="button" value="FINALIZAR CHAMADA" /> -->
@@ -43,5 +47,30 @@
 </span>
 </body>
 <script src="./teste.js" async></script>
+
+<script>
+  $(document).ready(function(){
+          if(localStorage.getItem("hubId") != "" || localStorage.getItem("hubId") != null || localStorage.getItem("hubId") != undefined){
+            $("#nome").val(localStorage.getItem("hubId"))
+          }
+    
+          $("#btnEnviar").click(function(){
+          var submitOk = true;
+          if ($("#nome").val() == '') {
+              submitOk = false;
+              alert("Por favor, verifique se você preencheu corretamente o campo HubId");
+              return;
+          } 
+          if(submitOk){
+              localStorage.setItem(
+              "hubId",
+               $("#nome").val()
+              );
+          }else{
+            alert("Campo HubId Vazio!")
+          }
+      });
+  });
+</script>
 
 </html>
