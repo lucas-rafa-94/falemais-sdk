@@ -87,6 +87,12 @@ class IFrameManager {
         res[1]
       );
     }
+    if(url.includes("app.hubspot.com") === false){
+      localStorage.setItem(
+        "contact",
+        res[1]
+      );
+    }
     console.log(res);
     const a = document.createElement("a");
     a.href = url;
