@@ -22,54 +22,70 @@
 
 <body>
   <span class="controls">
-        <img style='display:block;' src='imgs_0.jpg' height='200' alt=''></td>
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class="col-md-4  form-group" data-for="nome">
-    <label style='margin-left: 125px;'id="nomeLabel" for="name-form1-9" class="form-control-label mbr-fonts-style display-7">Informe seu HubId</label>
-    <input style='margin-left: 118px;  width: 150px;' type="text" name="nome" id="nome" data-form-field="nome" required="required" class="form-control display-7" id="name-form1-9">
-</div>
-  <input style='margin-left: 126px;  margin-bottom: 20px;' class="btn btn-primary" id="btnEnviar"  type="button" value="INICIAR CHAMADA" />
+    <img style='display:block;' src='imgs_0.jpg' height='200' alt=''></td>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="col-md-4  form-group" data-for="nome">
+      <label style='margin-left: 125px;' id="nomeLabel" for="name-form1-9" class="form-control-label mbr-fonts-style display-7">Informe seu HubId</label>
+      <input style='margin-left: 118px;  width: 150px;' type="text" name="nome" id="nome" data-form-field="nome" required="required" class="form-control display-7" id="name-form1-9">
+      <br>
+      <label style='margin-left: 125px;' id="emailLabel" for="name-form1-9" class="form-control-label mbr-fonts-style display-7">Informe seu E-mail</label>
+      <input style='margin-left: 118px;  width: 150px;' type="text" name="email" id="email" data-form-field="email" required="required" class="form-control display-7" id="name-form1-9">
+    </div>
+    <br>
+    <input style='margin-left: 126px;  margin-bottom: 20px;' class="btn btn-primary" id="btnEnviar" type="button" value="INICIAR CHAMADA" />
 
-  <br>
-  <!-- <input style='margin-left: 115px;  margin-bottom: 20px;' class="btn btn-danger"  type="button" value="FINALIZAR CHAMADA" /> -->
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-          <a href='https://api.whatsapp.com/send?phone=553535914564' target='_blank'><img border='0' style='display:block;' src='imgs_3.jpg' height='37' alt=''></a>
+    <br>
+    <!-- <input style='margin-left: 115px;  margin-bottom: 20px;' class="btn btn-danger"  type="button" value="FINALIZAR CHAMADA" /> -->
+    <br>
+    <br>
+    <br>
+    <br>
 
-        <a href='https://www.falemaisvoip.com.br/' target='_blank'><img border='0' style='display:block;' src='imgs_6.jpg' height='55' alt=''></a>
+    <a href='https://api.whatsapp.com/send?phone=553535914564' target='_blank'><img border='0' style='display:block;' src='imgs_3.jpg' height='37' alt=''></a>
 
-</span>
+    <a href='https://www.falemaisvoip.com.br/' target='_blank'><img border='0' style='display:block;' src='imgs_6.jpg' height='55' alt=''></a>
+
+  </span>
 </body>
 <script src="./teste.js" async></script>
 
 <script>
-  $(document).ready(function(){
-          if(localStorage.getItem("hubId") != "" || localStorage.getItem("hubId") != null || localStorage.getItem("hubId") != undefined){
-            $("#nome").val(localStorage.getItem("hubId"))
-          }
-    
-          $("#btnEnviar").click(function(){
-          var submitOk = true;
-          if ($("#nome").val() == '') {
-              submitOk = false;
-              alert("Por favor, verifique se você preencheu corretamente o campo HubId");
-              return;
-          } 
-          if(submitOk){
-              localStorage.setItem(
-              "hubId",
-               $("#nome").val()
-              );
-          }else{
-            alert("Campo HubId Vazio!")
-          }
-      });
+  $(document).ready(function () {
+    if (localStorage.getItem("hubId") != "" || localStorage.getItem("hubId") != null || localStorage.getItem("hubId") != undefined) {
+      $("#nome").val(localStorage.getItem("hubId"))
+    }
+    if (localStorage.getItem("email") != "" || localStorage.getItem("email") != null || localStorage.getItem("email") != undefined) {
+      $("#email").val(localStorage.getItem("email"))
+    }
+    //sdfasdf
+    $("#btnEnviar").click(function () {
+      var submitOk = true;
+      if ($("#nome").val() == '') {
+        submitOk = false;
+        alert("Por favor, verifique se você preencheu corretamente o campo HubId");
+        return;
+      }
+      if ($("#email").val() == '') {
+        submitOk = false;
+        alert("Por favor, verifique se você preencheu corretamente o campo Email");
+        return;
+      }
+      if (submitOk) {
+        localStorage.setItem(
+          "hubId",
+          $("#nome").val()
+        );
+        localStorage.setItem(
+          "email",
+          $("#email").val()
+        );
+      } else {
+        alert("Campo Email Vazio!")
+      }
+    });
   });
 </script>
 
